@@ -23,6 +23,7 @@ class WebImageView: UIView {
 
     private let imageView: UIImageView = {
         let v = UIImageView()
+        v.backgroundColor = Colors.appTint
         v.contentMode = .scaleAspectFill
         v.clipsToBounds = true
         v.translatesAutoresizingMaskIntoConstraints = false
@@ -61,6 +62,7 @@ class WebImageView: UIView {
 
         addSubview(webView)
         addSubview(imageView)
+        imageView.tintColor = Colors.appTint
         NSLayoutConstraint.activate([
             webView.anchorsConstraint(to: self),
             imageView.anchorsConstraint(to: self)

@@ -490,7 +490,6 @@ class InCoordinator: NSObject, Coordinator {
 //        let swapNavigationController = UINavigationController(rootViewController: swapViewController)
 //        swapNavigationController.navigationBar.isTranslucent = false
 //        viewControllers.append(swapNavigationController)
-        
         let browserCoordinator = createBrowserCoordinator(sessions: walletSessions, browserOnly: false, analyticsCoordinator: analyticsCoordinator)
         viewControllers.append(browserCoordinator.navigationController)
 
@@ -1006,8 +1005,8 @@ extension InCoordinator: TokensCoordinatorDelegate {
     }
     
     func shouldOpenWeb(url: URL, in coordinator: TokensCoordinator) {
-        open(for: url)
-    }
+            open(for: url)
+        }
 
     private func open(for url: URL) {
         guard let dappBrowserCoordinator = dappBrowserCoordinator else { return }

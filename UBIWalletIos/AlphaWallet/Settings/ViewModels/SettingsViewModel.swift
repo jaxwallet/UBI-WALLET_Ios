@@ -71,7 +71,6 @@ struct SettingsViewModel {
 }
 
 enum SettingsWalletRow: CaseIterable {
-    case kycVerfication
     case showMyWallet
     case changeWallet
     case backup
@@ -81,8 +80,6 @@ enum SettingsWalletRow: CaseIterable {
 
     var title: String {
         switch self {
-        case .kycVerfication:
-            return R.string.localizable.settingsKycVerificationTitle()
         case .showMyWallet:
             return R.string.localizable.settingsShowMyWalletTitle()
         case .changeWallet:
@@ -100,8 +97,6 @@ enum SettingsWalletRow: CaseIterable {
 
     var icon: UIImage {
         switch self {
-        case .kycVerfication:
-            return R.image.iconSettingsKyc()!
         case .showMyWallet:
             return R.image.walletAddress()!
         case .changeWallet:

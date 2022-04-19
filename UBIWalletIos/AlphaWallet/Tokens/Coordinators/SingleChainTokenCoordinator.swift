@@ -177,7 +177,7 @@ class SingleChainTokenCoordinator: Coordinator {
         case .main:
 //            autoDetectMainnetPartnerTokens()
             break
-        case .binance_smart_chain:
+        case .binance_smart_chain, .polygon:
             autoDetectBinancePartnerTokens()
         case .xDai:
             autoDetectXDaiPartnerTokens()
@@ -186,7 +186,7 @@ class SingleChainTokenCoordinator: Coordinator {
             break
         case .binance_smart_chain_testnet:
             autoDetectBSCTestPartnerTokens()
-        case .kovan, .ropsten, .poa, .sokol, .classic, .callisto, .goerli, .artis_sigma1, .artis_tau1, .custom, .heco_testnet, .heco, .fantom, .fantom_testnet, .avalanche, .avalanche_testnet, .polygon, .mumbai_testnet, .optimistic, .optimisticKovan, .cronosTestnet, .arbitrum, .palm, .palmTestnet:
+        case .kovan, .ropsten, .poa, .sokol, .classic, .callisto, .goerli, .artis_sigma1, .artis_tau1, .custom, .heco_testnet, .heco, .fantom, .fantom_testnet, .avalanche, .avalanche_testnet, .mumbai_testnet, .optimistic, .optimisticKovan, .cronosTestnet, .arbitrum, .palm, .palmTestnet:
             break
         }
     }
@@ -254,19 +254,18 @@ class SingleChainTokenCoordinator: Coordinator {
                             return .value(.none)
                         }
                     case .erc20:
-//                        let balanceCoordinator = GetERC20BalanceCoordinator(forServer: server)
-//                        return balanceCoordinator.getBalance(for: address, contract: each).then { balance -> Promise<BatchObject> in
-////                            if balance > 0 {
-////                                return strongSelf.fetchBatchObjectFromContractData(for: each, server: server, storage: strongSelf.storage)
-////                            } else {
-////                                return .value(.none)
-////                            }
-//                            print("here: balance & fetch token \(address)")
-//                            return strongSelf.fetchBatchObjectFromContractData(for: each, server: server, storage: strongSelf.storage)
-//                        }.recover { _ -> Guarantee<BatchObject> in
-//                            return .value(.none)
-//                        }
-                        return strongSelf.fetchBatchObjectFromContractData(for: each, server: server, storage: strongSelf.storage)
+                        let balanceCoordinator = GetERC20BalanceCoordinator(forServer: server)
+                        return balanceCoordinator.getBalance(for: address, contract: each).then { balance -> Promise<BatchObject> in
+//                            if balance > 0 {
+//                                return strongSelf.fetchBatchObjectFromContractData(for: each, server: server, storage: strongSelf.storage)
+//                            } else {
+//                                return .value(.none)
+//                            }
+                            print("here: balance & fetch token \(address)")
+                            return strongSelf.fetchBatchObjectFromContractData(for: each, server: server, storage: strongSelf.storage)
+                        }.recover { _ -> Guarantee<BatchObject> in
+                            return .value(.none)
+                        }
                     case .erc721:
                         //Handled in PrivateBalanceFetcher.refreshBalanceForErc721Or1155Tokens()
                         return .value(.none)

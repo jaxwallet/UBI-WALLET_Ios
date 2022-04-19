@@ -91,17 +91,7 @@ extension SettingsCoordinator: RenameWalletViewControllerDelegate {
 }
 
 extension SettingsCoordinator: SettingsViewControllerDelegate {
-    func settingsViewControllerKycVerificationSelected(in controller: SettingsViewController) {
-        let coordinator = KycVerificationCoordinator(
-                navigationController: navigationController,
-                config: config,
-                analyticsCoordinator: analyticsCoordinator
-        )
-        coordinator.delegate = self
-        coordinator.start()
-        addCoordinator(coordinator)
-    }
-    
+
     func settingsViewControllerNameWalletSelected(in controller: SettingsViewController) {
         let viewModel = RenameWalletViewModel(account: account.address)
 

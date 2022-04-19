@@ -62,7 +62,7 @@ public struct Constants {
 
     // support
     public static let supportEmail = "feedback@jaxwallet.io"
-    public static let dappsBrowserURL = "https://beta.jax.money/kyc.php"
+    public static let dappsBrowserURL = "https://www.jax.money/kyc.php"
 
     //Ethereum null variables
     public static let nullTokenId = "0x0000000000000000000000000000000000000000000000000000000000000000"
@@ -137,7 +137,11 @@ public struct Constants {
 //    ]
     
     static let bscPartnerContracts = [
-        (name: "WJXN", contract: AlphaWallet.Address(string: "0xCA1262E77FB25C0A4112CFC9BAD3FF54F617F2E6")!),
+//        (name: "WJXN", contract: AlphaWallet.Address(string: "0xCA1262E77FB25C0A4112CFC9BAD3FF54F617F2E6")!),
+//        (name: "BUSD", contract: AlphaWallet.Address(string: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56")!),
+        (name: "WJAX", contract: AlphaWallet.Address(string: "0x1d60AA1D6137Dcb1306C8A901EBd215Ca661d0cb")!),
+//        (name: "JAX DOLLAR", contract: AlphaWallet.Address(string: "0xeff49aED7baaBa69DCBdA577b34850c41e8F5226")!),
+//        (name: "JAX RUPEE", contract: AlphaWallet.Address(string: "0x86ECE7D9cdA927B3Ec4044Df67B082FA55A1c198")!),
     ]
 
 //    static let rinkebyPartnerContracts = [
@@ -164,8 +168,8 @@ public struct Constants {
 
     static let ensContractOnMainnet = AlphaWallet.Address.ethereumAddress(eip55String: "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
 
-    static let defaultEnabledServers: [RPCServer] = [.binance_smart_chain]
-    static let defaultEnabledTestnetServers: [RPCServer] = [.binance_smart_chain_testnet]
+    static let defaultEnabledServers: [RPCServer] = [.polygon]
+    static let defaultEnabledTestnetServers: [RPCServer] = [.mumbai_testnet]
 
     static let tokenScriptUrlSchemeForResources = "tokenscript-resource:///"
 

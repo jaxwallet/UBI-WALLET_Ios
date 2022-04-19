@@ -11,25 +11,25 @@ struct SettingViewHeaderViewModel {
     let titleText: String
     var detailsText: String?
     var titleTextFont: UIFont
-    var showTopSeparator: Bool = false
+    var showTopSeparator: Bool = true
 
     var titleTextColor: UIColor {
-        return Colors.appText
+        return Colors.headerThemeColor
     }
 
     var detailsTextColor: UIColor {
-        return Colors.appText
+        return Colors.headerThemeColor
     }
     var detailsTextFont: UIFont {
         return Fonts.regular(size: 13)
     }
 
     var backgroundColor: UIColor {
-        return Colors.settingsBackGroundColor
+        return R.color.alabaster()!
     }
 
     var separatorColor: UIColor {
-        return Colors.settingsSeperatorColor
+        return R.color.mercury()!
     }
 }
 

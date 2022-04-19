@@ -13,7 +13,6 @@ protocol SettingsViewControllerDelegate: class, CanOpenURL {
     func settingsViewControllerNameWalletSelected(in controller: SettingsViewController)
     func settingsViewControllerActiveNetworksSelected(in controller: SettingsViewController)
     func settingsViewControllerHelpSelected(in controller: SettingsViewController)
-    func settingsViewControllerKycVerificationSelected(in controller: SettingsViewController)
 }
 
 class SettingsViewController: UIViewController {
@@ -28,7 +27,6 @@ class SettingsViewController: UIViewController {
         tableView.register(SettingTableViewCell.self)
         tableView.register(SwitchTableViewCell.self)
         tableView.separatorStyle = .singleLine
-        tableView.separatorColor = Colors.settingsSeperatorColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -238,7 +236,7 @@ extension SettingsViewController: UITableViewDataSource {
                 cell.accessoryType = .disclosureIndicator
 
                 return cell
-            case .showMyWallet, .showSeedPhrase, .walletConnect, .nameWallet, .kycVerfication:
+            case .showMyWallet, .showSeedPhrase, .walletConnect, .nameWallet:
                 cell.configure(viewModel: .init(settingsWalletRow: row))
 
                 return cell
@@ -272,8 +270,6 @@ extension SettingsViewController: UITableViewDelegate {
         switch viewModel.sections[indexPath.section] {
         case .wallet(let rows):
             switch rows[indexPath.row] {
-            case .kycVerfication:
-                delegate?.settingsViewControllerKycVerificationSelected(in: self)
             case .backup:
                 delegate?.settingsViewControllerBackupWalletSelected(in: self)
             case .changeWallet:

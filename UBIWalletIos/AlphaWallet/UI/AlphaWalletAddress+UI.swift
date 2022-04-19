@@ -129,17 +129,15 @@ extension AlphaWallet.Address {
             return R.image.tokenSgbp()
         case "0xF48e200EAF9906362BB1442fca31e0835773b8B4".uppercased():
             return R.image.tokenSaud()
-        case "0xcA1262e77Fb25c0a4112CFc9bad3ff54F617f2e6".uppercased():
+        case "0xcA1262e77Fb25c0a4112CFc9bad3ff54F617f2e6".uppercased(), "0x3a171b7c5d671e3c4bb5823b8fd265f4e4e9a399".uppercased():
             return R.image.jaxBscToken()
-        case "0x3a171b7c5d671e3c4bb5823b8fd265f4e4e9a399".uppercased():
-            return R.image.jaxBscToken()
-        case "0x783f4a2efab4f34d6a0d88b71cf1fac6d9b46ff0".uppercased():
+        case "0x783f4a2efab4f34d6a0d88b71cf1fac6d9b46ff0".uppercased(), "0x1d60AA1D6137Dcb1306C8A901EBd215Ca661d0cb".uppercased():
             return R.image.jax()
-        case "0xa51bcdc792285598ba7443c71d557e0b7df6f991".uppercased():
+        case "0xa51bcdc792285598ba7443c71d557e0b7df6f991".uppercased(), "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56".uppercased():
             return R.image.busd()
-        case "0xb8bdd95b52ea5b815aaa214aedb8d01aed787157".uppercased():
+        case "0xb8bdd95b52ea5b815aaa214aedb8d01aed787157".uppercased(), "0xeff49aED7baaBa69DCBdA577b34850c41e8F5226".uppercased():
             return R.image.jusd()
-        case "0xec7d5848f88246ca6984b8019d08b8524793b062".uppercased():
+        case "0xec7d5848f88246ca6984b8019d08b8524793b062".uppercased(), "0x86ECE7D9cdA927B3Ec4044Df67B082FA55A1c198".uppercased():
             return R.image.jinr()
         default:
             return nil

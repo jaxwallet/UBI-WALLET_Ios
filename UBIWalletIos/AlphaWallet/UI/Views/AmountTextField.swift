@@ -143,7 +143,7 @@ class AmountTextField: UIControl {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.localizable.sendAllFunds(), for: .normal)
         button.titleLabel?.font = Fonts.spaceMedium(size: 10)
-        button.setTitleColor(Colors.appActionButtonGreen, for: .normal)
+        button.setTitleColor(UIColor(hex: "4C79CB"), for: .normal)
         button.setBackgroundColor(Colors.clear, forState: .normal)
         button.contentHorizontalAlignment = .right
         button.heightConstraint.flatMap { NSLayoutConstraint.deactivate([$0]) }
@@ -257,7 +257,7 @@ class AmountTextField: UIControl {
         case .cryptoCurrency:
             if useFormatting {
                 textField.text = formatValueToDisplayValue(ethCostRawValue)
-            } else if let shortEthCost = shortEthCost {
+            } else if let shortEthCost = shortEthCost{
                 textField.text = shortEthCost
             } else {
                 textField.text = ethCost

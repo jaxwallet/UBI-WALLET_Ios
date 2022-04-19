@@ -312,6 +312,7 @@ class TokensViewController: UIViewController {
     }
 
     @objc private func scanQRCodeButtonSelected(_ sender: UIBarButtonItem) {
+
         delegate?.scanQRCodeSelected(in: self)
     }
 
@@ -331,7 +332,7 @@ class TokensViewController: UIViewController {
     }
 
     private func getWalletBlockie() {
-        if let image = R.image.profile() {
+        if let image = R.image.profileImagePlaceHolder() {
             blockieImageView.image = BlockiesImage.image(image)
         }
 //        let generator = BlockiesGenerator()

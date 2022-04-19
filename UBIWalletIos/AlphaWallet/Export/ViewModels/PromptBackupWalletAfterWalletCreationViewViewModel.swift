@@ -7,7 +7,7 @@ struct PromptBackupWalletAfterWalletCreationViewViewModel: PromptBackupWalletVie
     let walletAddress: AlphaWallet.Address
 
     var backgroundColor: UIColor {
-        return Screen.Backup.backgroundColor
+        return UIColor(hex: "FE4443")
     }
  
     var title: String {

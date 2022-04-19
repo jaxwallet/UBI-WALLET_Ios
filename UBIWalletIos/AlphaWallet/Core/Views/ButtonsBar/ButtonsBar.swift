@@ -65,7 +65,6 @@ enum ButtonsBarButtonType {
     case green
     case white
     case system
-    case systemBorder
 }
 
 class BarButton: TransitionButton {
@@ -144,8 +143,8 @@ class ButtonsBar: UIView, ButtonsBarViewType {
 
     init(configuration: ButtonsBarConfiguration = .green(buttons: 1), showHaveWalletLabel: Bool = false) {
         haveWalletLabel.textAlignment = .center
-        haveWalletLabel.textColor = Colors.appText
-        haveWalletLabel.font = Fonts.regular(size: 12)
+        haveWalletLabel.textColor = Colors.headerThemeColor
+        haveWalletLabel.font = Fonts.regular(size: 18)
         haveWalletLabel.text = R.string.localizable.gettingStartedAlreadyHaveWallet()
         buttonsStackView = [UIView]().asStackView(axis: .horizontal, distribution: .fillEqually, spacing: 7)
         innerStackView = [UIView]().asStackView(axis: .horizontal, distribution: .fill, spacing: 10)
@@ -290,8 +289,6 @@ class ButtonsBar: UIView, ButtonsBarViewType {
                 setup(viewModel: .whiteButton, view: combined.1)
             case .system:
                 setup(viewModel: .systemButton, view: combined.1)
-            case .systemBorder:
-                setup(viewModel: .systemBorderButton, view: combined.1)
             }
         }
 
@@ -370,18 +367,14 @@ struct ButtonsBarViewModel {
     )
 
     static let systemButton = ButtonsBarViewModel(
-        buttonBackgroundColor: Colors.navigationColor,
-        buttonTitleColor: Colors.appWhite,
+        buttonBackgroundColor: Colors.appWhite,
+        highlightedButtonBackgroundColor: Colors.appWhite,
+        disabledButtonBackgroundColor: Colors.appWhite,
+        disabledButtonBorderColor: Colors.appWhite,
+        highlightedButtonTitleColor: Colors.appActionButtonGreen,
+        disabledButtonTitleColor: Colors.appActionButtonGreen,
         buttonFont: Fonts.regular(size: ScreenChecker().isNarrowScreen ? 16 : 20),
         buttonBorderWidth: 0.0
-    )
-    
-    static let systemBorderButton = ButtonsBarViewModel(
-        buttonBackgroundColor: .clear,
-        buttonTitleColor: Colors.navigationColor,
-        buttonFont: Fonts.regular(size: ScreenChecker().isNarrowScreen ? 16 : 20),
-        buttonBorderColor: Colors.navigationColor,
-        buttonBorderWidth: 1
     )
 
     static let moreButton = ButtonsBarViewModel()

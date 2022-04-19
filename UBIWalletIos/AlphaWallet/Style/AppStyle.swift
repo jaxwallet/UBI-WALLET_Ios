@@ -10,7 +10,7 @@ func applyStyle() {
     if #available(iOS 15.0, *) {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = Colors.navigationColor
+        appearance.backgroundColor = Colors.headerThemeColor
         appearance.setBackIndicatorImage(R.image.backWhite(), transitionMaskImage: R.image.backWhite())
         appearance.shadowImage = UIImage()
         appearance.titleTextAttributes = [
@@ -31,14 +31,9 @@ func applyStyle() {
         tabAppearance.backgroundColor = Colors.appWhite
         UITabBar.appearance().standardAppearance = tabAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabAppearance
-        let barAppearance = UITabBarItemAppearance()
-        barAppearance.normal.badgeBackgroundColor = Colors.appHighlightGreen
-        tabAppearance.stackedLayoutAppearance = barAppearance
-        tabAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: Colors.tabBarTextColorSelected]
-        tabAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: Colors.tabBarTextColorNormal]
     } else {
-        UITabBar.appearance().tintColor = Colors.appHighlightGreen
-        UINavigationBar.appearance().barTintColor = Colors.appWhite
+        UITabBar.appearance().tintColor = Colors.appTint
+        UINavigationBar.appearance().barTintColor = Colors.headerThemeColor
         UINavigationBar.appearance().backIndicatorImage = R.image.backWhite()
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = R.image.backWhite()
         UINavigationBar.appearance().titleTextAttributes = [
@@ -108,21 +103,19 @@ struct Colors {
     static let darkGray = UIColor(hex: "2f2f2f")
     static let black = UIColor(hex: "313849")
     static let lightBlack = UIColor(hex: "313849")
-    static let headerThemeColor = UIColor(hex: "4D5085")
-    static let tabBarTextColorNormal = navigationColor
-    static let tabBarTextColorSelected = appHighlightGreen
+    static let headerThemeColor = UIColor(hex: "152172")
+    static let tabBarTextColorNormal = UIColor(hex: "898DB4")
+    static let tabBarTextColorSelected = UIColor(hex: "152172")
     static let appBackground = UIColor(hex: "F5F5F5")
     static let appTint = UIColor(red: 21, green: 33, blue: 114)
     static let navigationTitleColor = UIColor.black
-    static let navigationColor = UIColor(hex: "FD9651")
     static let navigationButtonTintColor = appWhite
-    static let segmentColor = UIColor(hex: "FD9651")
     static let appWhite = UIColor.white
-    static let appText = UIColor(hex: "585B8C")
+    static let appText = UIColor(red: 21, green: 33, blue: 114)
     static let appSubtitle = UIColor(red: 117, green: 117, blue: 117)
-    static let appHighlightGreen = UIColor(hex: "44D5A3")
-    static let appActionButtonGreen = UIColor(hex: "44D5A3")
-    static let disabledActionButton = UIColor(hex: "44D5A380")
+    static let appHighlightGreen = UIColor(red: 117, green: 185, blue: 67)
+    static let appActionButtonGreen = UIColor(red: 21, green: 33, blue: 114)
+    static let disabledActionButton = UIColor(hex: "d7ebc8")
     static let appActionButtonShadow = UIColor.clear
     static let appGreenContrastBackground = UIColor(red: 86, green: 153, blue: 8)
     static let appLightButtonSeparator = UIColor(red: 255, green: 255, blue: 255, alpha: 0.2)
@@ -134,10 +127,9 @@ struct Colors {
     static let qrCodeRectBorders = UIColor(red: 216, green: 216, blue: 216)
     static let loadingIndicatorBorder = UIColor(red: 237, green: 237, blue: 237)
     static let sortByTextColor = UIColor(red: 51, green: 51, blue: 51)
-    static let segmentIndicatorColor = UIColor(hex: "AA2F00")
+    static let segmentIndicatorColor = UIColor(hex: "E7A634")
     static let borderGrayColor = UIColor(hex: "c4cad1")
     static let settingsBackGroundColor = UIColor(hex: "E9ECEF")
-    static let settingsSeperatorColor = UIColor(hex: "8D97AA")
     static let clear = UIColor.clear
     static let priceColor = UIColor(hex: "808392")
     static let newBorder = UIColor(hex: "C4CAD1")
@@ -206,7 +198,7 @@ enum GroupedTable {
     }
 
     enum Color {
-        static let title = Colors.appText
+        static let title = UIColor(red: 76, green: 76, blue: 76)
         static let background = Colors.appBackground
         static let cellSeparator = UIColor(red: 233, green: 233, blue: 233)
     }
@@ -237,7 +229,7 @@ enum DataEntry {
         static let textFieldShadowWhileEditing = Colors.appTint
         static let textFieldBackground = UIColor(hex: "FBFBFB")
         static let placeholder = UIColor(hex: "919191")
-        static let pasteColor = UIColor(hex: "44D5A3")
+        static let pasteColor = UIColor(hex: "4c79cb")
         static let ensText = UIColor(red: 117, green: 185, blue: 67)
         static let searchTextFieldBackground = UIColor(red: 243, green: 244, blue: 245)
     }
@@ -322,7 +314,6 @@ enum Screen {
         static let subtitleFont = ScreenChecker().isNarrowScreen ? Fonts.regular(size: 22) : Fonts.regular(size: 24)
         static let newSubtitleFont = ScreenChecker().isNarrowScreen ? Fonts.regular(size: 16) : Fonts.regular(size: 18)
         static let subtitleColor = Colors.darkGray
-        static let backgroundColor = Colors.appHighlightGreen
         static let descriptionFont = Fonts.regular(size: ScreenChecker.size(big: 17, medium: 15, small: 15))
         static let descriptionBoldFont = Fonts.bold(size: ScreenChecker.size(big: 17, medium: 15, small: 15))
         static let descriptionFontSmall = Fonts.regular(size: ScreenChecker.size(big: 13, medium: 13, small: 9))
@@ -385,33 +376,6 @@ enum Screen {
             let leftRightInset: CGFloat = ScreenChecker().isNarrowScreen ? 10 : 24
             let topBottomInset: CGFloat = ScreenChecker().isNarrowScreen ? 5 : 8
             return .init(top: 0, left: leftRightInset, bottom: topBottomInset, right: leftRightInset)
-        }
-    }
-    enum Kyc {
-        enum Color {
-            static let name = UIColor(hex: "131B6A")
-            static let unverifiedBg = UIColor(hex: "F8D7DA")
-            static let unverifiedLabel = UIColor(hex: "721C24")
-            static let unverifiedTitle = UIColor(hex: "721C24")
-            static let unverifiedDescription = UIColor(hex: "856404")
-            static let pendingBg = UIColor(hex: "FFF3CD")
-            static let pendingLabel = UIColor(hex: "856404")
-            static let pendingTitle = UIColor(hex: "FFC107")
-            static let pendingDescription = UIColor(hex: "856404")
-            static let declinedBg = UIColor(hex: "F8D7DA")
-            static let declinedLabel = UIColor(hex: "721C24")
-            static let declinedTitle = UIColor(hex: "721C24")
-            static let declinedDescription = UIColor(hex: "856404")
-            static let verifiedBg = UIColor(hex: "D4EDDA")
-            static let verifiedLabel = UIColor(hex: "155724")
-            static let verifiedTitle = UIColor(hex: "28A745")
-            static let verifiedDescription = UIColor(hex: "155724")
-        }
-        enum font {
-            static let name = Fonts.bold(size: 18)
-            static let label = Fonts.regular(size: 10)
-            static let title = Fonts.semibold(size: 12)
-            static let description = label
         }
     }
 }

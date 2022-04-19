@@ -87,6 +87,5 @@ class SettingTableViewCell: UITableViewCell {
         subTitleLabel.isHidden = viewModel.subTitleHidden
         subTitleLabel.font = viewModel.subTitleFont
         subTitleLabel.textColor = viewModel.subTitleTextColor
-        backgroundColor = Colors.appBackground
     }
 }

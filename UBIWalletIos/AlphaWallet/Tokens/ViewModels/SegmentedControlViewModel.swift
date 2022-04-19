@@ -10,7 +10,7 @@ struct SegmentedControlViewModel {
 	}
 
 	var backgroundColor: UIColor {
-		return Colors.segmentColor
+		return Colors.headerThemeColor
 	}
 
 	func titleFont(forSelection selection: SegmentedControl.Selection) -> UIFont {
