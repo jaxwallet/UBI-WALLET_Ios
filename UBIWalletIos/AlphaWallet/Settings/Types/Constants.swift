@@ -62,7 +62,7 @@ public struct Constants {
 
     // support
     public static let supportEmail = "feedback@jaxwallet.io"
-    public static let dappsBrowserURL = "https://www.jax.money/kyc.php"
+    public static let dappsBrowserURL = "https://jaxcorp.com/mobile_ubi_status.html"
 
     //Ethereum null variables
     public static let nullTokenId = "0x0000000000000000000000000000000000000000000000000000000000000000"
