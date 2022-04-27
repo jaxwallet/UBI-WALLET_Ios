@@ -6,7 +6,7 @@ extension Constants {
     enum Credentials {
         static let infuraKey = "638a8313baad4e02a75b80d45b8889c5"
         static let etherscanKey = "YH711JGVVSJQY7KMMQAI3YXJUE8FSQB44C"
-        static let binanceSmartChainExplorerApiKey: String? = nil
+        static let binanceSmartChainExplorerApiKey = ""
         static let polygonScanExplorerApiKey: String? = nil
         static let analyticsKey = ""
         static let paperTrail = (host: "", port: UInt(0))
