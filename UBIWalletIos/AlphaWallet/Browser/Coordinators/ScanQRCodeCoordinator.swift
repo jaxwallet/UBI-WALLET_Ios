@@ -54,35 +54,47 @@ final class ScanQRCodeCoordinator: NSObject, Coordinator {
     }
 
     func start(fromSource source: Analytics.ScanQRCodeSource) {
-        
         AVCaptureDevice.requestAccess(for: .video) { success in
-              if success { // if request is granted (success is true)
-                  PHPhotoLibrary.requestAuthorization(for: .readWrite) { [unowned self] (status) in
-                      switch status {
-                      case .authorized, .limited:
-                          DispatchQueue.main.async {
-                              self.logStartScan(source: source)
-                              self.navigationController.makePresentationFullScreenForiOS13Migration()
-                              self.parentNavigationController.present(self.navigationController, animated: true)
-                          
-                          }
+          if success { // if request is granted (success is true)
+              PHPhotoLibrary.requestAuthorization(for: .readWrite) { [unowned self] (status) in
+                switch status {
+                case .authorized, .limited:
+                    DispatchQueue.main.async {
+                        self.logStartScan(source: source)
+                        self.navigationController.makePresentationFullScreenForiOS13Migration()
+                        self.parentNavigationController.present(self.navigationController, animated: true)
+                    
+                    }
 
-                          case .restricted:
-                          break
+                case .restricted, .denied, .notDetermined:
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Photo Library", message: "Photo Library access is necessary to use this app", preferredStyle: .alert)
 
-                          case .denied:
-                          break
-
-                          case .notDetermined:
-                              break
-
-                          @unknown default:
-                              break
-                          }
-                  }
-                
+                        // Add "OK" Button to alert, pressing it will bring you to the settings app
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                        }))
+                        alert.popoverPresentationController?.sourceView = navigationController.view
+                        // Show the alert with animation
+                        parentNavigationController.present(alert, animated: true)
+                    }
+                    
+                }
               }
-            }
+          } else {
+              DispatchQueue.main.async {
+                  let alert = UIAlertController(title: "Camera", message: "Camera access is absolutely necessary to use this app", preferredStyle: .alert)
+
+                  // Add "OK" Button to alert, pressing it will bring you to the settings app
+                  alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                      UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                  }))
+                  alert.popoverPresentationController?.sourceView = self.navigationController.view
+              // Show the alert with animation
+                  self.parentNavigationController.present(alert, animated: true)
+              }
+          }
+        }
     }
 
     @objc private func dismiss() {
