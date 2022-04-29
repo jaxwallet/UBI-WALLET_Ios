@@ -184,9 +184,9 @@ class SingleChainTokenCoordinator: Coordinator {
         case .rinkeby:
 //            autoDetectRinkebyPartnerTokens()
             break
-        case .binance_smart_chain_testnet:
+        case .binance_smart_chain_testnet, .mumbai_testnet:
             autoDetectBSCTestPartnerTokens()
-        case .kovan, .ropsten, .poa, .sokol, .classic, .callisto, .goerli, .artis_sigma1, .artis_tau1, .custom, .heco_testnet, .heco, .fantom, .fantom_testnet, .avalanche, .avalanche_testnet, .mumbai_testnet, .optimistic, .optimisticKovan, .cronosTestnet, .arbitrum, .palm, .palmTestnet:
+        case .kovan, .ropsten, .poa, .sokol, .classic, .callisto, .goerli, .artis_sigma1, .artis_tau1, .custom, .heco_testnet, .heco, .fantom, .fantom_testnet, .avalanche, .avalanche_testnet, .optimistic, .optimisticKovan, .cronosTestnet, .arbitrum, .palm, .palmTestnet:
             break
         }
     }
