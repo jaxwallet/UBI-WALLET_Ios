@@ -68,7 +68,7 @@ final class ScanQRCodeCoordinator: NSObject, Coordinator {
 
                 case .restricted, .denied, .notDetermined:
                     DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Photo Library", message: "Photo Library access is necessary to use this app", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Photo Library", message: "Photo Library access is required to pass the KYC verification", preferredStyle: .alert)
 
                         // Add "OK" Button to alert, pressing it will bring you to the settings app
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -83,7 +83,7 @@ final class ScanQRCodeCoordinator: NSObject, Coordinator {
               }
           } else {
               DispatchQueue.main.async {
-                  let alert = UIAlertController(title: "Camera", message: "Camera access is absolutely necessary to use this app", preferredStyle: .alert)
+                  let alert = UIAlertController(title: "Camera", message: "Camera access is required to pass the KYC verification", preferredStyle: .alert)
 
                   // Add "OK" Button to alert, pressing it will bring you to the settings app
                   alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
