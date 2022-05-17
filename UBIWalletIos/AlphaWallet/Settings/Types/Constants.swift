@@ -140,6 +140,7 @@ public struct Constants {
 //        (name: "WJXN", contract: AlphaWallet.Address(string: "0xCA1262E77FB25C0A4112CFC9BAD3FF54F617F2E6")!),
 //        (name: "BUSD", contract: AlphaWallet.Address(string: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56")!),
         (name: "WJAX", contract: AlphaWallet.Address(string: "0x1d60AA1D6137Dcb1306C8A901EBd215Ca661d0cb")!),
+        
 //        (name: "JAX DOLLAR", contract: AlphaWallet.Address(string: "0xeff49aED7baaBa69DCBdA577b34850c41e8F5226")!),
 //        (name: "JAX RUPEE", contract: AlphaWallet.Address(string: "0x86ECE7D9cdA927B3Ec4044Df67B082FA55A1c198")!),
     ]
@@ -151,6 +152,7 @@ public struct Constants {
     static let bscTestPartnerContracts = [
         
         (name: "WJAX", contract: AlphaWallet.Address(string: "0x364044F4AeCF18699344eE43f9FD6A58C4BEA49c")!),
+        (name: "WJAX", contract: AlphaWallet.Address(string: "0x783f4A2EfAB4f34D6a0D88b71cf1FAc6d9B46FF0")!),
         
     ]
     
@@ -167,7 +169,7 @@ public struct Constants {
     static let ensContractOnMainnet = AlphaWallet.Address.ethereumAddress(eip55String: "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
 
     static let defaultEnabledServers: [RPCServer] = [.polygon]
-    static let defaultEnabledTestnetServers: [RPCServer] = [.mumbai_testnet]
+    static let defaultEnabledTestnetServers: [RPCServer] = [.binance_smart_chain_testnet] // .mumbai_testnet, 
 
     static let tokenScriptUrlSchemeForResources = "tokenscript-resource:///"
 
