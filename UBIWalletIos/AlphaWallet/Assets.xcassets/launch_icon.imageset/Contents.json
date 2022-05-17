@@ -1,20 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Frame 1-6.png",
+      "filename" : "jax-ubi.svg",
       "idiom" : "iphone",
-      "scale" : "1x"
+      
     },
-    {
-      "filename" : "Frame 1-5.png",
-      "idiom" : "iphone",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Frame 1-4.png",
-      "idiom" : "iphone",
-      "scale" : "3x"
-    },
+    
     
   ],
   "info" : {
