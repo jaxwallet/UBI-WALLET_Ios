@@ -469,7 +469,7 @@
 "gettingStarted.subtitle" = "Welcome to JAX UBI";
 "gettingStarted.newWallet" = "CREATE A NEW WALLET";
 "gettingStarted.alreadyHaveWallet" = "I already have a wallet:";
-"backup.prompt.title" = "Receive a 5 WJAX after completing a simple ID verification";
+"backup.prompt.title" = "Receive FREE 5 WJAX after completing a simple ID verification";
 "backup.prompt.description.withAmount" = "You have not backed up your wallet yet. You have %@ USD net. Act now.";
 "backup.prompt.backupButton.title" = "Start verification";
 "backup.prompt.backup.remindLater" = "Remind me to back up later?";
