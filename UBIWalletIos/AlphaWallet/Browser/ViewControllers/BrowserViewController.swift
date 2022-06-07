@@ -231,6 +231,10 @@ extension BrowserViewController: WKNavigationDelegate {
             return decisionHandler(.allow)
         }
         let app = UIApplication.shared
+        if url.description.contains("https://t.me") {
+            app.open(url)
+            return decisionHandler(.cancel)
+        }
         if ["tel", "mailto"].contains(scheme), app.canOpenURL(url) {
             app.open(url)
             return decisionHandler(.cancel)
