@@ -41,7 +41,7 @@ class PromptKycView: UIView {
 
         NSLayoutConstraint.activate([
             row0.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            row0.heightAnchor.constraint(equalToConstant: 50),
+            row0.heightAnchor.constraint(equalToConstant: 30),
 //            descriptionLabel.widthAnchor.constraint(equalTo: actionButton.widthAnchor, constant: 30),
 
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
@@ -65,6 +65,10 @@ class PromptKycView: UIView {
         titleLabel.numberOfLines = 3
         titleLabel.textColor = viewModel.titleColor
         titleLabel.text = viewModel.title
+        
+        if viewModel.title.lowercased() == "pending" {
+            actionButton.isHidden = true
+        }
         //For small screens
         titleLabel.adjustsFontSizeToFitWidth = true
 
