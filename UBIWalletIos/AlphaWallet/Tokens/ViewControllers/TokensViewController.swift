@@ -120,6 +120,7 @@ class TokensViewController: UIViewController {
     private lazy var keyboardChecker = KeyboardChecker(self, resetHeightDefaultValue: 0, ignoreBottomSafeArea: true)
     private let config: Config
     private let walletConnectCoordinator: WalletConnectCoordinator
+    private let promptKycCoordinator: PromptKycCoordinator
     let server: RPCServer = .binance_smart_chain
     var isConsoleButtonHidden: Bool {
         get {
@@ -191,6 +192,7 @@ class TokensViewController: UIViewController {
          assetDefinitionStore: AssetDefinitionStore,
          eventsDataStore: EventsDataStoreProtocol,
          filterTokensCoordinator: FilterTokensCoordinator,
+         promptKycCoordinator: PromptKycCoordinator,
          config: Config,
          walletConnectCoordinator: WalletConnectCoordinator,
          walletBalanceCoordinator: WalletBalanceCoordinatorType,
@@ -203,6 +205,7 @@ class TokensViewController: UIViewController {
         self.eventsDataStore = eventsDataStore
         self.config = config
         self.walletConnectCoordinator = walletConnectCoordinator
+        self.promptKycCoordinator = promptKycCoordinator
         walletSummarySubscription = walletBalanceCoordinator.subscribableWalletBalance(wallet: account)
         filterTokensCoordinator.singleChainTokenCoordinators = singleChainTokenCoordinators
         viewModel = TokensViewModel(filterTokensCoordinator: filterTokensCoordinator, tokens: [])
@@ -282,6 +285,7 @@ class TokensViewController: UIViewController {
                 self.reloadWalletSummaryView(with: balance)
             }
         }
+        
         navigationItem.largeTitleDisplayMode = .never
     }
 
@@ -346,6 +350,7 @@ class TokensViewController: UIViewController {
     @objc func pullToRefresh() {
         tableViewRefreshControl.beginRefreshing()
         collectiblesCollectionViewRefreshControl.beginRefreshing()
+        promptKycCoordinator.start()
         fetch()
     }
 

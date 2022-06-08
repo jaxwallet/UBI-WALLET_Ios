@@ -28,6 +28,7 @@ class TokensCoordinator: Coordinator {
     private let assetDefinitionStore: AssetDefinitionStore
     private let eventsDataStore: EventsDataStoreProtocol
     private let promptBackupCoordinator: PromptBackupCoordinator
+    private let promptKycCoordinator: PromptKycCoordinator
     private let filterTokensCoordinator: FilterTokensCoordinator
     private let analyticsCoordinator: AnalyticsCoordinator
     private let tokenActionsService: TokenActionsServiceType
@@ -62,6 +63,7 @@ class TokensCoordinator: Coordinator {
             assetDefinitionStore: assetDefinitionStore,
             eventsDataStore: eventsDataStore,
             filterTokensCoordinator: filterTokensCoordinator,
+            promptKycCoordinator: promptKycCoordinator,
             config: config,
             walletConnectCoordinator: walletConnectCoordinator,
             walletBalanceCoordinator: walletBalanceCoordinator,
@@ -100,6 +102,7 @@ class TokensCoordinator: Coordinator {
             assetDefinitionStore: AssetDefinitionStore,
             eventsDataStore: EventsDataStoreProtocol,
             promptBackupCoordinator: PromptBackupCoordinator,
+            promptKycCoordinator: PromptKycCoordinator,
             filterTokensCoordinator: FilterTokensCoordinator,
             analyticsCoordinator: AnalyticsCoordinator,
             tokenActionsService: TokenActionsServiceType,
@@ -120,6 +123,7 @@ class TokensCoordinator: Coordinator {
         self.assetDefinitionStore = assetDefinitionStore
         self.eventsDataStore = eventsDataStore
         self.promptBackupCoordinator = promptBackupCoordinator
+        self.promptKycCoordinator = promptKycCoordinator
         self.analyticsCoordinator = analyticsCoordinator
         self.tokenActionsService = tokenActionsService
         self.walletConnectCoordinator = walletConnectCoordinator
@@ -127,7 +131,7 @@ class TokensCoordinator: Coordinator {
         self.coinTickersFetcher = coinTickersFetcher
         self.activitiesService = activitiesService
         self.walletBalanceCoordinator = walletBalanceCoordinator
-        promptBackupCoordinator.prominentPromptDelegate = self
+        promptKycCoordinator.prominentPromptDelegate = self
         setupSingleChainTokenCoordinators()
     }
 
@@ -476,16 +480,22 @@ extension TokensCoordinator: CanOpenURL {
 }
 
 extension TokensCoordinator: PromptBackupCoordinatorProminentPromptDelegate {
-    func startVerification(_ url: URL) {
-    //        didPressOpenWebPage(url, in: tokensViewController)
-            delegate?.shouldOpenWeb(url: url, in: self)
-        }
     
     var viewControllerToShowBackupLaterAlert: UIViewController {
         return tokensViewController
     }
 
     func updatePrompt(inCoordinator coordinator: PromptBackupCoordinator) {
+        tokensViewController.promptBackupWalletView = coordinator.prominentPromptView
+    }
+}
+
+extension TokensCoordinator: PromptKycCoordinatorProminentPromptDelegate {
+    func startVerification(_ url: URL) {
+            delegate?.shouldOpenWeb(url: url, in: self)
+        }
+
+    func updatePrompt(inCoordinator coordinator: PromptKycCoordinator) {
         tokensViewController.promptBackupWalletView = coordinator.prominentPromptView
     }
 }

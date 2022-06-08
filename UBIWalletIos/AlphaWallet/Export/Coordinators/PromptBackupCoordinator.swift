@@ -6,9 +6,7 @@ import BigInt
 
 protocol PromptBackupCoordinatorProminentPromptDelegate: AnyObject {
     var viewControllerToShowBackupLaterAlert: UIViewController { get }
-
     func updatePrompt(inCoordinator coordinator: PromptBackupCoordinator)
-    func startVerification(_ url: URL)
 }
 
 protocol PromptBackupCoordinatorSubtlePromptDelegate: AnyObject {
@@ -379,12 +377,12 @@ extension PromptBackupCoordinator: PromptBackupWalletViewDelegate {
     }
 
     func didChooseBackup(inView view: PromptBackupWalletView) {
-//        guard let nc = viewControllerToShowBackupLaterAlert(forView: view)?.navigationController else { return }
-//        let coordinator = BackupCoordinator(navigationController: nc, keystore: keystore, account: wallet.address, analyticsCoordinator: analyticsCoordinator)
-//        coordinator.delegate = self
-//        coordinator.start()
-//        addCoordinator(coordinator)
-        prominentPromptDelegate?.startVerification(URL(string: Constants.dappsBrowserURL)!)
+        guard let nc = viewControllerToShowBackupLaterAlert(forView: view)?.navigationController else { return }
+        let coordinator = BackupCoordinator(navigationController: nc, keystore: keystore, account: wallet.address, analyticsCoordinator: analyticsCoordinator)
+        coordinator.delegate = self
+        coordinator.start()
+        addCoordinator(coordinator)
+//        prominentPromptDelegate?.startVerification(URL(string: Constants.dappsBrowserURL)!)
     }
 }
 

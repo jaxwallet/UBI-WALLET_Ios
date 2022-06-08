@@ -28,6 +28,10 @@ class AppCoordinator: NSObject, Coordinator {
     var promptBackupCoordinator: PromptBackupCoordinator? {
         return coordinators.compactMap { $0 as? PromptBackupCoordinator }.first
     }
+    
+    var promptKycCoordinator: PromptKycCoordinator? {
+        return coordinators.compactMap { $0 as? PromptKycCoordinator }.first
+    }
 
     private lazy var urlSchemeCoordinator: UrlSchemeCoordinatorType = {
         let coordinator = UrlSchemeCoordinator()
@@ -193,6 +197,9 @@ class AppCoordinator: NSObject, Coordinator {
         let promptBackupCoordinator = PromptBackupCoordinator(keystore: keystore, wallet: wallet, config: config, analyticsCoordinator: analyticsService)
 //        promptBackupCoordinator.start()
         addCoordinator(promptBackupCoordinator)
+        
+        let promptKycCoordinator = PromptKycCoordinator(wallet: wallet)
+        addCoordinator(promptKycCoordinator)
 
         let coordinator = InCoordinator(
                 navigationController: navigationController,
@@ -205,6 +212,7 @@ class AppCoordinator: NSObject, Coordinator {
                 restartQueue: restartQueue,
                 urlSchemeCoordinator: urlSchemeCoordinator,
                 promptBackupCoordinator: promptBackupCoordinator,
+                promptKycCoordinator: promptKycCoordinator,
                 accountsCoordinator: accountsCoordinator,
                 walletBalanceCoordinator: walletBalanceCoordinator,
                 coinTickersFetcher: coinTickersFetcher

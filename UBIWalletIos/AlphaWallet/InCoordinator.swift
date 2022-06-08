@@ -134,6 +134,7 @@ class InCoordinator: NSObject, Coordinator {
     private lazy var walletConnectCoordinator: WalletConnectCoordinator = createWalletConnectCoordinator()
 
     private let promptBackupCoordinator: PromptBackupCoordinator
+    private let promptKycCoordinator: PromptKycCoordinator
 
     lazy var tabBarController: UITabBarController = {
         let tabBarController = TabBarController()
@@ -155,6 +156,7 @@ class InCoordinator: NSObject, Coordinator {
             restartQueue: RestartTaskQueue,
             urlSchemeCoordinator: UrlSchemeCoordinatorType,
             promptBackupCoordinator: PromptBackupCoordinator,
+            promptKycCoordinator: PromptKycCoordinator,
             accountsCoordinator: AccountsCoordinator,
             walletBalanceCoordinator: WalletBalanceCoordinatorType,
             coinTickersFetcher: CoinTickersFetcherType
@@ -169,12 +171,16 @@ class InCoordinator: NSObject, Coordinator {
         self.assetDefinitionStore = assetDefinitionStore
         self.urlSchemeCoordinator = urlSchemeCoordinator
         self.promptBackupCoordinator = promptBackupCoordinator
+        self.promptKycCoordinator = promptKycCoordinator
         self.accountsCoordinator = accountsCoordinator
         self.walletBalanceCoordinator = walletBalanceCoordinator
         self.coinTickersFetcher = coinTickersFetcher
+        
         //Disabled for now. Refer to function's comment
         //self.assetDefinitionStore.enableFetchXMLForContractInPasteboard()
         super.init()
+        
+        self.promptKycCoordinator.updateTabDelegate = self
     }
 
     deinit {
@@ -367,7 +373,8 @@ class InCoordinator: NSObject, Coordinator {
         logEnabledChains()
         logWallets()
         logDynamicTypeSetting()
-        promptBackupCoordinator.start()
+//        promptBackupCoordinator.start()
+        promptKycCoordinator.start()
     }
 
     private lazy var tokenCollection: TokenCollection = {
@@ -376,7 +383,7 @@ class InCoordinator: NSObject, Coordinator {
         return tokenCollection
     }()
 
-    private func createTokensCoordinator(promptBackupCoordinator: PromptBackupCoordinator, activitiesService: ActivitiesServiceType) -> TokensCoordinator {
+    private func createTokensCoordinator(promptBackupCoordinator: PromptBackupCoordinator, promptKycCoordinator: PromptKycCoordinator, activitiesService: ActivitiesServiceType) -> TokensCoordinator {
         promptBackupCoordinator.listenToNativeCryptoCurrencyBalance(withWalletSessions: walletSessions)
         pollEthereumEvents(tokenCollection: tokenCollection)
 
@@ -389,6 +396,7 @@ class InCoordinator: NSObject, Coordinator {
                 assetDefinitionStore: assetDefinitionStore,
                 eventsDataStore: eventsDataStore,
                 promptBackupCoordinator: promptBackupCoordinator,
+                promptKycCoordinator: promptKycCoordinator,
                 filterTokensCoordinator: filterTokensCoordinator,
                 analyticsCoordinator: analyticsCoordinator,
                 tokenActionsService: tokenActionsService,
@@ -468,7 +476,7 @@ class InCoordinator: NSObject, Coordinator {
     private func setupTabBarController() {
         var viewControllers = [UIViewController]()
 
-        let tokensCoordinator = createTokensCoordinator(promptBackupCoordinator: promptBackupCoordinator, activitiesService: activitiesService)
+        let tokensCoordinator = createTokensCoordinator(promptBackupCoordinator: promptBackupCoordinator, promptKycCoordinator: promptKycCoordinator, activitiesService: activitiesService)
 
         configureNavigationControllerForLargeTitles(tokensCoordinator.navigationController)
         viewControllers.append(tokensCoordinator.navigationController)
@@ -1195,6 +1203,18 @@ extension InCoordinator: ReplaceTransactionCoordinatorDelegate {
         case .sentRawTransaction, .signedTransaction:
             break
         }
+    }
+}
+
+extension InCoordinator: PromptKycCoordinatorUpdateTabDelegate {
+    func changeVerifyToCollectTab() {
+        guard let coordinator = dappBrowserCoordinator else { return }
+        coordinator.rootViewController.tabBarItem = UITabBarItem(title: R.string.localizable.collectUbiTabbarItemTitle(), image: R.image.tab_collect_ubi(), selectedImage: R.image.tab_collect_ubi_active())
+    }
+    
+    func changeCollectToVerifyTab() {
+        guard let coordinator = dappBrowserCoordinator else { return }
+        coordinator.rootViewController.tabBarItem = UITabBarItem(title: R.string.localizable.browserTabbarItemTitle(), image: R.image.tab_browser(), selectedImage: R.image.tab_browser_active())
     }
 }
 // swiftlint:enable file_length
