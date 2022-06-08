@@ -12,7 +12,7 @@ struct PromptApprovedKycViewModel: PromptKycViewModel {
     let walletAddress: AlphaWallet.Address
 
     var backgroundColor: UIColor {
-        return UIColor(hex: "FE4443")
+        return UIColor(hex: "44D5A3")
     }
  
     var title: String {

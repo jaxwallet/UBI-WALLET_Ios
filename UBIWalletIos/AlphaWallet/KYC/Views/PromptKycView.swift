@@ -42,7 +42,7 @@ class PromptKycView: UIView {
         NSLayoutConstraint.activate([
             row0.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             row0.heightAnchor.constraint(equalToConstant: 50),
-            descriptionLabel.widthAnchor.constraint(equalTo: actionButton.widthAnchor, constant: 30),
+//            descriptionLabel.widthAnchor.constraint(equalTo: actionButton.widthAnchor, constant: 30),
 
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),

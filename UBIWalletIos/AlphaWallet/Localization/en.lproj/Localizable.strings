@@ -724,7 +724,7 @@
 "kyc.pending.prompt.title" = "Pending";
 "kyc.pending.prompt.description" = "KYC verification in progress\nPlease wait while we verify your Identity";
 "kyc.pending.prompt.actionButton.title" = "";
-"kyc.rejected.prompt.title" = "Receive FREE 5 WJAX after completing a simple ID verification";
+"kyc.rejected.prompt.title" = "Rejected";
 "kyc.rejected.prompt.description" = "We have a problem with your ID verification\nPlease update your information";
 "kyc.rejected.prompt.actionButton.title" = "Start verification";
 "collect.ubi.tabbar.item.title" = "Collect UBI";
